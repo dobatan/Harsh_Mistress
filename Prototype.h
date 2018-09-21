@@ -1,9 +1,9 @@
 //Robot
-void robot_perceptual_cues(void);			//Robot‚Ì’mŠo•WŽ¯
-void robot_state_transition_rules(void);	//ó‘Ô‘JˆÚ‹K‘¥
-void robot_state_behavior(void);			//Robot‚Ì‹““®ŒvŽZ
-void robot_collision_dynamics(void);		//Robot‚ÌÕ“Ë‚ÉŠÖ‚·‚éŒvŽZ
-void robot_collision_algorithm(void);		//Õ“ËƒAƒ‹ƒSƒŠƒYƒ€
+void robot_perceptual_cues(void);		//Perception labeling of Robot
+void robot_state_transition_rules(void);	//State transition rule
+void robot_state_behavior(void);		//Dynamics of robots
+void robot_collision_dynamics(void);		//calculating robot collision
+void robot_collision_algorithm(void);		//Collision algorithm
 void robot_final_action(void);
 
 //Behavior
@@ -20,14 +20,14 @@ void left_turn(int i);
 void right_turn(int i);
 
 
-//‚»‚Ì‘¼‚Ìˆ—
+//ãã®ä»–ã®å‡¦ç†
 void robot_parallelism_check(int i, int p);
 void robot_parallelism_flagdown(int i);
 
 
 //Environment
-void envi_pheromone(void);				//ƒtƒFƒƒ‚ƒ“‚ÌŒvŽZ
-void envi_other(void);					//Robot‚ÌŒ»ÝƒZƒ‹‚ÌŒvŽZ
+void envi_pheromone(void);				//Calculating pheromone
+void envi_other(void);					//Calculating current location (cell) of robots
 
 
 //Initial
