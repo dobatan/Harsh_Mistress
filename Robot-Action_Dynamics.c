@@ -6,39 +6,39 @@ void random_walk(int i){
 		robot[i].random = ((double)rand() / ((double)RAND_MAX + 1.0) * 99);
 
 		if(robot[i].random >= 0 && robot[i].random <= 81)
-			robot[i].flag_RW = 0;	//直進
+			robot[i].flag_RW = 0;	//Straight forward
 		if(robot[i].random >= 82 && robot[i].random <= 87)
-			robot[i].flag_RW = 1;	//左超信地旋回
+			robot[i].flag_RW = 1;	//Left pivotal turn
 		if(robot[i].random >= 88 && robot[i].random <= 93)
-			robot[i].flag_RW = 2;	//右超信地旋回
+			robot[i].flag_RW = 2;	//Right pivotal turn
 		if(robot[i].random >= 94 && robot[i].random <= 99)
-			robot[i].flag_RW = 3;	//後進
+			robot[i].flag_RW = 3;	//Backward
 	}
 
-	if(robot[i].count_RW <= 10){//10step同じ行動をする
+	if(robot[i].count_RW <= 10){//Remain the same bevavioral state at 10 steps
 		switch(robot[i].flag_RW){
-			case 0:	//直進
+			case 0:	//Straight forward
 				robot[i].dx = robot_v * cos(robot[i].ang_r);
 				robot[i].dy = robot_v * sin(robot[i].ang_r);
 				robot[i].ang_r = atan2(robot[i].dy, robot[i].dx);
 				robot[i].ang_d = robot[i].ang_r * 180 / M_PI;
 				robot[i].count_RW++;
 				break;
-			case 1:	//左超信地旋回
+			case 1:	//Left pivotal turn
 				robot[i].ang_r = robot[i].ang_r + M_PI / 20;
 				robot[i].ang_d = robot[i].ang_r * 180 / M_PI;
 				robot[i].dx = 0;
 				robot[i].dy = 0;
 				robot[i].count_RW++;
 				break;
-			case 2:	//右超信地旋回
+			case 2:	//Right pivotal turn
 				robot[i].ang_r = robot[i].ang_r - M_PI / 20;
 				robot[i].ang_d = robot[i].ang_r * 180 / M_PI;
 				robot[i].dx = 0;
 				robot[i].dy = 0;
 				robot[i].count_RW++;
 				break;
-			case 3:	//後進
+			case 3:	//Backward
 				robot[i].dx = -robot_v * cos(robot[i].ang_r);
 				robot[i].dy = -robot_v * sin(robot[i].ang_r);
 				robot[i].ang_r = atan2(-robot[i].dy, -robot[i].dx);
@@ -53,11 +53,11 @@ void random_walk(int i){
 
 
 void go2nest(int i){
-	//速度ベクトル
+	//Speed vector
 	robot[i].ang_nest	=	atan2(nest_y - robot[i].y, nest_x - robot[i].x);
 	robot[i].dx			=	robot_v * cos(robot[i].ang_nest);
 	robot[i].dy			=	robot_v * sin(robot[i].ang_nest);
-	//Robot方向
+	//Robot direction
 	robot[i].ang_r = atan2(robot[i].dy, robot[i].dx);
 	robot[i].ang_d = robot[i].ang_r * 180 / M_PI;
 }
@@ -83,7 +83,7 @@ void follow_pheromone(int i){
 
 	nest_ang = robot[i].ang_nest - robot[i].ang_r;
 
-	//flagとcounterの初期化
+	//Initializing flag and counter
 	if(robot[i].p_phero_L == TRUE && robot[i].p_phero_R == FALSE){
 		robot[i].flag_phe_l = TRUE;
 		robot[i].flag_phe_r = FALSE;
@@ -110,7 +110,7 @@ void follow_pheromone(int i){
 	if(robot[i].flag_phe_l == TRUE){
 		robot_mem1_in(i);
 		left_turn(i);
-		//if(nest_ang > M_PI / 6 && nest_ang < M_PI * 5/6){		//Nest is left side
+		//if(nest_ang > M_PI / 6 && nest_ang < M_PI * 5/6){	//Nest is left side
 		if(nest_ang > 0 && nest_ang < M_PI * 5/6){		//Nest is left side
 			robot_mem1_out(i);
 			right_turn(i);
