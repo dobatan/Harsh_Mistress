@@ -1,106 +1,106 @@
 //////////////////////////////////////////
-//Robot‚Ì•Ï”‚Ìİ’è
+//Robotã®å¤‰æ•°ã®è¨­å®š
 //////////////////////////////////////////
 typedef struct{
-	//Robot‚Ì«¿
-	int state;				//“à•”ó‘Ô
+	//Internal State of Robot
+	int state;
 
-	//Robot‚ÌÀ•WE‘¬“xE—Í
-	int	grid_x, grid_y;		//ƒZƒ‹ˆÊ’u
-	double x, y;			//À•W
-	double dx, dy;			//‘¬“xƒxƒNƒgƒ‹
+	//Robotã®åº§æ¨™ãƒ»é€Ÿåº¦ãƒ»åŠ›
+	int	grid_x, grid_y;		//Position of Robot on the Grid
+	double x, y;			//Position of Robot
+	double dx, dy;			//Velocity of Robot
 	double F;
 	double Fn, Fnx, Fny;
 	double Ft;
 	
-	//Robot‚ÌŠp“x
-	double ang_d;			//Robot‚ÌŒü‚¢‚Ä‚¢‚é•ûŒü(Degree)
-	double ang_r;			//Robot‚ÌŒü‚¢‚Ä‚¢‚é•ûŒü(radian)
-	double ang_dr;			//”÷¬Šp“x
-	double ang_go;			//ÀÛ‚ÌRobot‚Ìis•ûŒü
+	//Robotã®è§’åº¦
+	double ang_d;			//Direction of Robot(Degree)
+	double ang_r;			//Direction of Robot(radian)
+	double ang_dr;
+	double ang_go;
 
-	//Robot‚Æ‘¼‚ÌŠp“x
-	double ang_NL;			//Food‚ÆÚG‚µ‚½‚Æ‚«‚Ì–@ü•ûŒü
-	double ang_OA;			//ang_NL‚Ì‹tA‰~’Œ‚ÌdS‚©‚çŒ©‚½Robot‚ÌŠp“x
-	double ang_nest;		//Nest‚Ì•ûŒü
-	double ang_ij;			//ÚG‚µ‚½ŒÂ‘Ì‚Ì•ûŒü
-	double ang_OS;			//Õ“Ë‚µ‚½‹q‘Ì‚Ì•ûŒüiRobot‚Ìis•ûŒü‚É‘Î‚µ‚Äj
+	//Robotã¨ä»–ã®è§’åº¦
+	double ang_NL;			//Foodã¨æ¥è§¦ã—ãŸã¨ãã®æ³•ç·šæ–¹å‘
+	double ang_OA;			//ang_NLã®é€†ã€å††æŸ±ã®é‡å¿ƒã‹ã‚‰è¦‹ãŸRobotã®è§’åº¦
+	double ang_nest;		//Nestã®æ–¹å‘
+	double ang_ij;			//æ¥è§¦ã—ãŸå€‹ä½“ã®æ–¹å‘
+	double ang_OS;			//è¡çªã—ãŸå®¢ä½“ã®æ–¹å‘ï¼ˆRobotã®é€²è¡Œæ–¹å‘ã«å¯¾ã—ã¦ï¼‰
 	double ang_col;
 
-	//’mŠo•W¯
-	int p_touch_food;		//FoodÚG’mŠo•W¯
-	int p_arrival_nest;		//Nest“’…’mŠo•W¯
-	int p_phero_L;			//ƒtƒFƒƒ‚ƒ“’mŠo•W¯
-	int p_phero_R;			//ƒtƒFƒƒ‚ƒ“’mŠo•W¯
-	int p_sc_timer;			//“à•”ƒ^ƒCƒ}[
-	int p_lay_miss;			//•~İ¸”s‚Ì’mŠo•W¯
+	//çŸ¥è¦šæ¨™è­˜
+	int p_touch_food;		//Foodæ¥è§¦çŸ¥è¦šæ¨™è­˜
+	int p_arrival_nest;		//Neståˆ°ç€çŸ¥è¦šæ¨™è­˜
+	int p_phero_L;			//ãƒ•ã‚§ãƒ­ãƒ¢ãƒ³çŸ¥è¦šæ¨™è­˜
+	int p_phero_R;			//ãƒ•ã‚§ãƒ­ãƒ¢ãƒ³çŸ¥è¦šæ¨™è­˜
+	int p_sc_timer;			//å†…éƒ¨ã‚¿ã‚¤ãƒãƒ¼
+	int p_lay_miss;			//æ•·è¨­å¤±æ•—ã®çŸ¥è¦šæ¨™è­˜
 
-	//‚»‚Ì‘¼
-	int aSA_ID;				//SA‚µ‚Ä‚¢‚é‘Šè‚ÌID
-	int Food_ID;			//”c‚µ‚Ä‚¢‚éFood‚ÌID
-	int SA_root;			//Root robot‚ÌID
-	int grip;				//FoodÉRobot‚ğ’Í‚ñ‚Å‚¢‚é
-	int grip_Robot;			//Robot‚ğ’Í‚ñ‚Å‚¢‚é
-	int grip_Food;			//Food‚ğ’Í‚ñ‚Å‚¢‚é
-	double dis_pot;			//‘¼ŒÂ‘Ì‚Æ‚Ì‹——£
+	//ãã®ä»–
+	int aSA_ID;				//SAã—ã¦ã„ã‚‹ç›¸æ‰‹ã®ID
+	int Food_ID;			//æŠŠæŒã—ã¦ã„ã‚‹Foodã®ID
+	int SA_root;			//Root robotã®ID
+	int grip;				//Foodâˆ¨Robotã‚’æ´ã‚“ã§ã„ã‚‹
+	int grip_Robot;			//Robotã‚’æ´ã‚“ã§ã„ã‚‹
+	int grip_Food;			//Foodã‚’æ´ã‚“ã§ã„ã‚‹
+	double dis_pot;			//ä»–å€‹ä½“ã¨ã®è·é›¢
 	
 	//Counter
-	int random;								//—”¶¬i0|99j
-	int count_RW;							//RWƒJƒEƒ“ƒ^
-	int count_p_trace;						//ƒtƒFƒƒ‚ƒ“’Ç]ƒJƒEƒ“ƒ^
-	int count_collision;					//Õ“Ëˆ—ƒJƒEƒ“ƒ^
-	int count_lay_failure;					//•~İ’â~ƒJƒEƒ“ƒ^
-	int count_move;							//‰^”ÀƒJƒEƒ“ƒ^
+	int random;								//ä¹±æ•°ç”Ÿæˆï¼ˆ0ï¼99ï¼‰
+	int count_RW;							//RWã‚«ã‚¦ãƒ³ã‚¿
+	int count_p_trace;						//ãƒ•ã‚§ãƒ­ãƒ¢ãƒ³è¿½å¾“ã‚«ã‚¦ãƒ³ã‚¿
+	int count_collision;					//è¡çªå‡¦ç†ã‚«ã‚¦ãƒ³ã‚¿
+	int count_lay_failure;					//æ•·è¨­åœæ­¢ã‚«ã‚¦ãƒ³ã‚¿
+	int count_move;							//é‹æ¬ã‚«ã‚¦ãƒ³ã‚¿
 
 	//Flag
-	int flag_RW;							//RW‚Ìƒtƒ‰ƒO
-	int flag_phe_l, flag_phe_r, flag_phe_b;	//s“®ŠJnE’â~ƒtƒ‰ƒO
+	int flag_RW;							//RWã®ãƒ•ãƒ©ã‚°
+	int flag_phe_l, flag_phe_r, flag_phe_b;	//è¡Œå‹•é–‹å§‹ãƒ»åœæ­¢ãƒ•ãƒ©ã‚°
 
-	//Õ“Ë”»’è
+	//è¡çªåˆ¤å®š
 	int colli_robot;
 	int colli_wall;
 	int colli_food;
 
-	//ƒtƒFƒƒ‚ƒ“ƒZƒ“ƒT[
-	double L_sensor, R_sensor;		//ƒtƒFƒƒ‚ƒ“ƒZƒ“ƒT[
+	//ãƒ•ã‚§ãƒ­ãƒ¢ãƒ³ã‚»ãƒ³ã‚µãƒ¼
+	double L_sensor, R_sensor;		//ãƒ•ã‚§ãƒ­ãƒ¢ãƒ³ã‚»ãƒ³ã‚µãƒ¼
 
-	//Pheromone‹­‰»ƒtƒ‰ƒO
-	int f_laydown_a;				//•~İƒtƒ‰ƒO(S1¨S2)
-	int f_reinforce_a;				//‹­‰»ƒtƒ‰ƒO1(S1¨S3)
-	int f_laydown_b;				//•~İƒtƒ‰ƒO(S1¨S2)
-	int f_reinforce_b;				//‹­‰»ƒtƒ‰ƒO1(S1¨S3)
+	//Pheromoneå¼·åŒ–ãƒ•ãƒ©ã‚°
+	int f_laydown_a;				//æ•·è¨­ãƒ•ãƒ©ã‚°(S1â†’S2)
+	int f_reinforce_a;				//å¼·åŒ–ãƒ•ãƒ©ã‚°1(S1â†’S3)
+	int f_laydown_b;				//æ•·è¨­ãƒ•ãƒ©ã‚°(S1â†’S2)
+	int f_reinforce_b;				//å¼·åŒ–ãƒ•ãƒ©ã‚°1(S1â†’S3)
 
 	FILE *Log;
 } Robot;
 
 
 //////////////////////////////////////////
-//Robot_mem‚Ì\‘¢‘Ì
+//Robot_memã®æ§‹é€ ä½“
 //////////////////////////////////////////
 typedef struct {
-	double dx_mem1, dy_mem1;		//1ƒXƒeƒbƒv‚Å“®‚­‹——£i‘¬“xj
-	double dx_mem2, dy_mem2;		//1ƒXƒeƒbƒv‚Å“®‚­‹——£i‘¬“xj
-	double ang_r_mem1, ang_r_mem2;	//Šp“xidegreej
+	double dx_mem1, dy_mem1;		//1ã‚¹ãƒ†ãƒƒãƒ—ã§å‹•ãè·é›¢ï¼ˆé€Ÿåº¦ï¼‰
+	double dx_mem2, dy_mem2;		//1ã‚¹ãƒ†ãƒƒãƒ—ã§å‹•ãè·é›¢ï¼ˆé€Ÿåº¦ï¼‰
+	double ang_r_mem1, ang_r_mem2;	//è§’åº¦ï¼ˆdegreeï¼‰
 
 	FILE *Log;
 } Robot_mem;
 
 
 //////////////////////////////////////////
-//Food‚Ì\‘¢‘Ì
+//Foodã®æ§‹é€ ä½“
 //////////////////////////////////////////
 typedef struct {
-	double x, y;			//À•W
-	double dx, dy;			//1ƒXƒeƒbƒv‚Å“®‚­‹——£i‘¬“xj
-	double ang_d;			//Šp“xiradianj
-	double ang_r;			//Šp“xidegreej
+	double x, y;			//åº§æ¨™
+	double dx, dy;			//1ã‚¹ãƒ†ãƒƒãƒ—ã§å‹•ãè·é›¢ï¼ˆé€Ÿåº¦ï¼‰
+	double ang_d;			//è§’åº¦ï¼ˆradianï¼‰
+	double ang_r;			//è§’åº¦ï¼ˆdegreeï¼‰
 	double dis;
 	int state;
 
-	double Food_Tx;			//X²•ûŒü‚Ì—Íi•Àij
-	double Food_Ty;			//Y²•ûŒü‚Ì—Íi•Àij
-	double Food_T;			//•Ài—Í
-	double Food_ang;		//•Ài‚ÌŠp“x
+	double Food_Tx;			//Xè»¸æ–¹å‘ã®åŠ›ï¼ˆä¸¦é€²ï¼‰
+	double Food_Ty;			//Yè»¸æ–¹å‘ã®åŠ›ï¼ˆä¸¦é€²ï¼‰
+	double Food_T;			//ä¸¦é€²åŠ›
+	double Food_ang;		//ä¸¦é€²ã®è§’åº¦
 	double Food_R;			//
 
 	FILE *Log;
@@ -108,7 +108,7 @@ typedef struct {
 
 
 //////////////////////////////////////////
-//Nest‚Ì\‘¢‘Ì
+//Nestã®æ§‹é€ ä½“
 //////////////////////////////////////////
 typedef struct {
 	int nest_x;
@@ -119,7 +119,7 @@ typedef struct {
 
 
 //////////////////////////////////////////
-//SAŒvZ‚Ì\‘¢‘Ì
+//SAè¨ˆç®—ã®æ§‹é€ ä½“
 //////////////////////////////////////////
 typedef struct
 {
@@ -152,16 +152,16 @@ typedef struct{
 } Food_Log;
 
 
-typedef struct{//ÀÛ‚ÌField‚ÌGrid‚Ì•Ï”‚Ìİ’è
-	double F_p;		//’nã‚ÌƒtƒFƒƒ‚ƒ“
-	double A_p;		//‘å‹C’†‚ÌƒtƒFƒƒ‚ƒ“
-	double P_dif;	//üˆÍ‚©‚çŠgU‚µ‚Ä‚­‚éƒtƒFƒƒ‚ƒ“
+typedef struct{//å®Ÿéš›ã®Fieldã®Gridã®å¤‰æ•°ã®è¨­å®š
+	double F_p;		//åœ°ä¸Šã®ãƒ•ã‚§ãƒ­ãƒ¢ãƒ³
+	double A_p;		//å¤§æ°—ä¸­ã®ãƒ•ã‚§ãƒ­ãƒ¢ãƒ³
+	double P_dif;	//å‘¨å›²ã‹ã‚‰æ‹¡æ•£ã—ã¦ãã‚‹ãƒ•ã‚§ãƒ­ãƒ¢ãƒ³
 } P_grid1;
 
 
 
-typedef struct{//Display—p‚ÌField‚ÌGrid‚Ì•Ï”‚Ìİ’è
-	double F_p;		//’nã‚ÌƒtƒFƒƒ‚ƒ“
-	double A_p;		//‘å‹C’†‚ÌƒtƒFƒƒ‚ƒ“
+typedef struct{//Displayç”¨ã®Fieldã®Gridã®å¤‰æ•°ã®è¨­å®š
+	double F_p;		//åœ°ä¸Šã®ãƒ•ã‚§ãƒ­ãƒ¢ãƒ³
+	double A_p;		//å¤§æ°—ä¸­ã®ãƒ•ã‚§ãƒ­ãƒ¢ãƒ³
 } P_grid2;
 
