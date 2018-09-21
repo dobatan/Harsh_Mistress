@@ -10,29 +10,29 @@ void init_argos(void){
 
 
 void init_robot(void){
-	//宣言
+	//Declaration
 	int i;
 
 	robot_v = AGENT_V * dt;
 
 	srand((unsigned)time(NULL));
 
-	//Robotの初期化
+	//Initializing Robot
 	//#pragma omp parallel for
 	for(i = 0; i < robots; ++i)	{
-		//座標
+		//Coordinates
 		robot[i].x			=	rand() / (RAND_MAX + 1.0) * WIDTH;
 		robot[i].y			=	rand() / (RAND_MAX + 1.0) * HEIGHT;
 //		robot[i].x			=	0;
 //		robot[i].y			=	HEIGHT / 2;
 		robot[i].dx			=	0;
 		robot[i].dy			=	0;
-		//角度
+		//Angle
 		robot[i].ang_r		=	rand() / (RAND_MAX + 1.0) * 2 * M_PI;
 		robot[i].ang_d		=	0;
 		robot[i].ang_NL		=	0;
 		robot[i].ang_OA		=	0;
-		//その他
+		//Others
 		robot[i].state		=	1;
 		robot[i].aSA_ID		=	9999;
 		robot[i].Food_ID	=	9999;
@@ -82,14 +82,14 @@ void init_nest(void){
 
 
 void init_pheromone(void){
-	//宣言
+	//Declaration
 	int i;
 	int j;
 	
 	dF_p = FALSE;
 	dA_p = FALSE;
 
-	//フェロモンの初期化
+	//Initializing pheromone
 	for(i = 0; i < WIDTH; ++i){	
 		for(j = 0; j < HEIGHT; ++j){
 			p_grid1[i][j][T].F_p = 0;
@@ -99,7 +99,7 @@ void init_pheromone(void){
 		}
 	}
 
-	//フェロモンの初期化	
+	//Initializing pheromone	
 	for(i = 0; i < WIDTH / GRID_SPAN; ++i){
 		for(j = 0; j < GRID_SPAN; ++j){
 			p_grid2[i][j].F_p = 0;
@@ -112,27 +112,27 @@ void init_pheromone(void){
 void init_eva_dif(void){
 	double eva;
 
-	//蒸発係数の決定
+	//Determine evaporation coefficient
 	eva		= -0.0443 * pow(p_density, 2) + 0.0039 * p_density + 0.993;
-	c_eva	= 1 - ((1 - eva) / (10 / dt));	//実験は10秒単位
+	c_eva	= 1 - ((1 - eva) / (10 / dt));	//10 sec. unit in experiments
 	
-	//拡散係数の決定
+	//Determine diffusion coefficient
 	dif		= (p_density * COE_DIF) / 0.4;
 }
 
 
 void init_setting(void){
-	//光と反射の初期化
-	GLfloat light_position0[] = {0.0,	0.0,	500.0,	0.0};//光源位置（１）
-	GLfloat light_position1[] = {WIDTH, HEIGHT,	500.0,	0.0};//光源位置（２）
+	//Initializing light and reflection
+	GLfloat light_position0[] = {0.0,	0.0,	500.0,	0.0};//Location of light (1)
+	GLfloat light_position1[] = {WIDTH, HEIGHT,	500.0,	0.0};//Location of light (2)
 
-	//Windowを塗りつぶす時の色の指定
+	//Color to fill Window
 	glClearColor(1.0, 1.0, 1.0, 0.0);
 
-	//初期化
-	step = 0;		//ステップの初期化
+	//Initialization
+	step = 0;		//Initializing step
 	
-	//描画
+	//Drawing
 	if(WIDTH == 180)
 		view_z = 300;
 	if(WIDTH == 360)
@@ -149,33 +149,33 @@ void init_setting(void){
 	glLightfv(GL_LIGHT0, GL_POSITION, light_position0);
 	glLightfv(GL_LIGHT1, GL_POSITION, light_position1);
 
-	//光
-	glEnable(GL_LIGHTING);						//光を扱えるようにする
-	glEnable(GL_LIGHT0);						//ライト0を有効にする
-	glEnable(GL_LIGHT1);						//ライト1を有効にする
-	glEnable(GL_COLOR_MATERIAL);				//材質パラメータを現在のカラーに追従
+	//Light
+	glEnable(GL_LIGHTING);						//Enabling light
+	glEnable(GL_LIGHT0);						//Activating light 0
+	glEnable(GL_LIGHT1);						//Activating light 1
+	glEnable(GL_COLOR_MATERIAL);				        //Making material parameters follow current colors
 	
-	//隠面処理
-	glEnable(GL_DEPTH_TEST);					//デプステストを有効にする
+	//Hidden surface
+	glEnable(GL_DEPTH_TEST);					//Activating depth test
 	glDepthFunc(GL_LEQUAL);
 	
-	//混合処理
-	glEnable(GL_BLEND);							//混合処理
+	//Blending
+	glEnable(GL_BLEND);							//Blending
 		
-	//法線の算出
-	glEnable(GL_NORMALIZE);						//法線の正規化
+	//Getting normal line
+	glEnable(GL_NORMALIZE);						//Normalize
 }
 
 
 void init_log(void){
 	int i, j, p;
 	
-	//Robot-Logの初期化
+	//Initializing Robot-Log
 	//#pragma omp parallel for
 	//for(i = 0; i < robots; i++){
 	//	#pragma omp parallel for
 	//	for(j = 0; j < TimeLimit; j++){
-	//		//座標
+	//		//Coordinates
 	//		robot_log[i][j].step	= 0;
 	//		robot_log[i][j].x		= 0;
 	//		robot_log[i][j].y		= 0;
@@ -184,10 +184,10 @@ void init_log(void){
 	//	}
 	//}
 
-	//Food-Logの初期化
+	//Initializing Food-Log
 	for(p = 0; p < foods; p++){
 		for(j = 0; j < TimeLimit; j++){
-			//座標
+			//Coordinates
 			food_log[p][j].step		= 0;
 			food_log[p][j].x		= 0;
 			food_log[p][j].y		= 0;
@@ -201,11 +201,11 @@ void init_log(void){
 void init(void){
 	idle_f = TRUE;
 	foodcount = 0;
-	Lay_down_a = 0;					//敷設回数
-	Reinforce_a = 0;				//強化回数
-	Lay_down_b = 0;					//敷設回数
-	Reinforce_b = 0;				//強化回数
-	Collision_total = 0;			//衝突回数の初期化
+	Lay_down_a = 0;					//#Laying down
+	Reinforce_a = 0;				//#Reinforcing
+	Lay_down_b = 0;					//#Laying down
+	Reinforce_b = 0;				//#Reinforcing
+	Collision_total = 0;			//Initializing collision events
 
 	srand((unsigned)time(NULL));
 	init_argos();
