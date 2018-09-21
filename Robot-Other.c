@@ -2,7 +2,7 @@
 
 
 void robot_parallelism_check(int i, int p){
-	//Food接触フラグ
+	//Flag indicating touch to food
 	if(robot[i].state == 1){
 		if(p == 0){
 			robot[i].f_laydown_a = TRUE;
@@ -53,13 +53,13 @@ void robot_parallelism_flagdown(int i){
 }
 
 
-void robot_mem1_in(int i){//Pheromone trace用のメモリ
+void robot_mem1_in(int i){//Memory for Pheromone trace
 	robot_mem[i].dx_mem1 = robot[i].dx;
 	robot_mem[i].dx_mem1 = robot[i].dy;
 	robot_mem[i].ang_r_mem1 = robot[i].ang_r;
 }
 
-void robot_mem2_in(int i){//衝突処理アルゴリズム用のメモリ
+void robot_mem2_in(int i){//Memory for collision processing algorithm
 	robot_mem[i].dx_mem2 = robot[i].dx;
 	robot_mem[i].dx_mem2 = robot[i].dy;
 	robot_mem[i].ang_r_mem2 = robot[i].ang_r;
