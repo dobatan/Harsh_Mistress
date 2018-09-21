@@ -34,7 +34,7 @@ void robot_back(int i){
 
 
 void robot_stop(int i){
-	//10step‚¾‚¯Stop‚·‚é
+	//Stop for 10 steps
 	if(robot[i].count_collision <= 10){
 		robot[i].dx = 0;
 		robot[i].dy = 0;
@@ -54,8 +54,8 @@ void robot_stop(int i){
 
 
 void left_turn(int i){
-	double wd = 10;						//ŽÔ—ÖŠÔ‹——£
-	double z = 4.0 * M_PI / 180;		//’PˆÊ‰ñ“]Šp
+	double wd = 10;				//Distance between wheels
+	double z = 4.0 * M_PI / 180;		//Unit rotation angle
 
 	double a = wd/2 * sin(z);
 	double b = wd/2 * (1 - cos(z));
@@ -76,8 +76,8 @@ void left_turn(int i){
 
 
 void right_turn(int i){
-	double wd = 10;						//ŽÔ—ÖŠÔ‹——£
-	double z = 4.0 * M_PI / 180;		//’PˆÊ‰ñ“]Šp
+	double wd = 10;				//Distance between wheels
+	double z = 4.0 * M_PI / 180;		//Unit rotation angle
 
 	double a = wd/2 * sin(z);
 	double b = wd/2 * (1 - cos(z));
