@@ -30,7 +30,7 @@ void sys_log_save(void){
 }
 
 
-void sys_step_memo(void){//Step‚ÉŠÖ‚·‚éˆ—‚ğs‚¤
+void sys_step_memo(void){//Stepâ€šXXX
 	int step_EO;
 
 	step_EO = step % 2;
