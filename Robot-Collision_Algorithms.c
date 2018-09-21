@@ -1,25 +1,25 @@
 #include "stdafx.h"
 
 
-//‘¼ŒÂ‘Ì‚Ö‚ÌÚG”»’è
-void collision_robot(int i, int j){//Robot“¯m‚ÌÕ“ËŒvZ
+//Determining touch to other agents
+void collision_robot(int i, int j){//Computing collision between robots
 	if(i != j){
-		//Robot‚ÌÕ“Ë”»’è
+		//Determining collising against other agents
 		robot[i].dis_pot = sqrt(pow(robot[j].x - robot[i].x, 2) + pow(robot[j].y - robot[i].y, 2));
 
 		if(robot[i].dis_pot <= scale_argos * 2){
-			Collision_total += 1;		//Collision‰ñ”‚ğƒJƒEƒ“ƒg‚·‚é
+			Collision_total += 1;		//Count #collisions
 			robot_mem2_in(i);
 			//if(robot[i].state != 2){
 			//	robot[i].x -= robot[i].dx;
 			//	robot[i].y -= robot[i].dy;
 			//}
 
-			//Õ“ËŠp“x‚ÌŒvZ
-			robot[i].ang_ij = atan2((robot[j].y - robot[i].y), (robot[j].x - robot[i].x));	//â‘ÎÀ•WŒn
-			robot[i].ang_OS = fabs(robot[i].ang_ij - robot[i].ang_r);						//‘Š‘ÎÀ•WŒn
+			//Calculating collision angle
+			robot[i].ang_ij = atan2((robot[j].y - robot[i].y), (robot[j].x - robot[i].x));	//Absolute coordinate system
+			robot[i].ang_OS = fabs(robot[i].ang_ij - robot[i].ang_r);			//Relative coordinate system
 
-			robot[i].count_collision = 0;	//ƒJƒEƒ“ƒg‚Ì‰Šú‰»
+			robot[i].count_collision = 0;	//Initializing count
 			if(robot[i].state == 2){
 				if(robot[i].ang_OS <= M_PI/2 && robot[i].ang_OS >= -M_PI/2)
 					robot[i].colli_robot = TRUE;
@@ -30,14 +30,14 @@ void collision_robot(int i, int j){//Robot“¯m‚ÌÕ“ËŒvZ
 				robot[i].colli_robot = TRUE;
 
 			//if(robot[i].ang_OS < M_PI/2 && robot[i].state == 2)
-			//	robot[i].colli_robot = FALSE;												//ÚGƒtƒ‰ƒO
+			//	robot[i].colli_robot = FALSE;												//æ¥è§¦ãƒ•ãƒ©ã‚°
 			//else
 			//	robot[i].colli_robot = TRUE;
 		}
 	}
 }
 
-//Wall‚Æ‚ÌÕ“ËŒvZ
+//Computing collising against wall
 void collision_wall(int i){
 	if(robot[i].x < scale_argos){
 		robot_mem2_in(i);
@@ -93,10 +93,10 @@ void collision_wall(int i){
 }
 
 
-//Food‚Ö‚ÌÚG”»’è
-void collision_food(int i, int p){//Robot‚ÆFood‚Æ‚ÌÕ“ËŒvZ
-	double dis_ac	= sqrt(pow(robot[i].x - food[p].x, 2) + pow(robot[i].y - food[p].y, 2));	//Robot-FoodŠÔ‹——£
-	double dis_r	= Food_scale + scale_argos;													//Robot-Food‚Ì”¼Œa‚Ì˜a
+//Determining touch to food
+void collision_food(int i, int p){//Computing collision between robot and food
+	double dis_ac	= sqrt(pow(robot[i].x - food[p].x, 2) + pow(robot[i].y - food[p].y, 2));	//Robot-Food distance
+	double dis_r	= Food_scale + scale_argos;													//Robot-Foodã®åŠå¾„ã®å’Œ
 	
 	if(dis_ac <= dis_r){
 		robot[i].ang_NL = atan2(robot[i].y - food[p].y, robot[i].x - food[p].x);
@@ -105,7 +105,7 @@ void collision_food(int i, int p){//Robot‚ÆFood‚Æ‚ÌÕ“ËŒvZ
 	}
 }
 
-//ÚG”»’è
+//Determining touch
 void robot_collision_dynamics(void){
 	int i, j, p;
 
