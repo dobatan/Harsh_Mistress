@@ -3,12 +3,12 @@
 void p_food(int i){
 	int p;
 
-	//’mŠo•W¯@
-	robot[i].p_touch_food		=	0;//FoodÚG”»’èi’mŠo•W¯j
-//	robot[i].p_phero			=	0;//ƒtƒFƒƒ‚ƒ“”»’èi’mŠo•W¯j
-	robot[i].p_arrival_nest		=	0;//Nest“’…”»’èi’mŠo•W¯j
+	//Robot perceptual cuesã€€
+	robot[i].p_touch_food		=	0;		//Determining touch to Food
+//	robot[i].p_phero		=	0;		//Determining touch to pheromone
+	robot[i].p_arrival_nest		=	0;		//Determining touch to nest
 
-	//FoodÚG’mŠo•W¯
+	//Perceptual cues: touch food
 	if(robot[i].state == 1 || robot[i].state == 3){
 		for(p = 0; p < foods; p++){
 			double dis_ac = sqrt(pow(robot[i].x - food[p].x, 2) + pow(robot[i].y - food[p].y, 2));
@@ -18,7 +18,7 @@ void p_food(int i){
 				robot[i].p_touch_food = TRUE;//ON
 				//robot[i].ang_OA = atan2((robot[i].y - food[p].y), (robot[i].x - food[p].x));
 
-				//‚Ç‚ÌFood‚ÉÚG‚µ‚½‚Ì‚©‚Ìƒtƒ‰ƒOˆ—
+				//Flagging of each food item
 				robot_parallelism_check(i, p);
 			}
 		}
@@ -29,7 +29,7 @@ void p_food(int i){
 
 
 void p_pheromone(int i){
-	//ƒtƒFƒƒ‚ƒ“’mŠo•W¯
+	//Perceptual cues: touch pheromone
 	if(robot[i].state == 1 || robot[i].state == 3){
 		//Left sensor
 		if(robot[i].L_sensor > P_Det){
@@ -59,7 +59,7 @@ void p_pheromone(int i){
 
 
 void p_nest(int i){
-	//Nest“’…’mŠo•W¯
+	//Perceptual cues: touch nest
 	if(robot[i].state == 2){
 		if(pow(robot[i].x - nest_x, 2) + pow(robot[i].y - nest_y, 2) <= pow(G1_scale, 2))
 			robot[i].p_arrival_nest = TRUE;	
