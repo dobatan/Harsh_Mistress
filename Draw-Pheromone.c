@@ -4,11 +4,11 @@
 
 void draw_pheromone(void)
 {
-	//宣言
+	//Declaration
 	int i, j, k, l;
 
 
-	//Pheromoneの可視化計算
+	//Visualizing Pheromone
 	for (i = 0; i < WIDTH / GRID_SPAN; i++){
 		for (j = 0; j < HEIGHT / GRID_SPAN; j++){
 			p_grid2[i][j].F_p = 0;
@@ -24,12 +24,12 @@ void draw_pheromone(void)
 	
 	glDisable(GL_LIGHTING);
 
-	//地表のPheromone
+	//Pheromone on the floor
 	if(dF_p == TRUE){
-		glColor3d(1.0, 0.0, 0.0);//フェロモンの色の設定
-		//F_pの描画
+		glColor3d(1.0, 0.0, 0.0);//Setting pheromone color
+		//Drawing F_p
 		glBegin(GL_LINES);
-		for (i = 0; i < WIDTH / GRID_SPAN - 1; ++i){//x軸方向の線
+		for (i = 0; i < WIDTH / GRID_SPAN - 1; ++i){//Line of x-axis
 			for (j = 0; j < HEIGHT / GRID_SPAN; ++j){
 				glVertex3d(GRID_SPAN*i + GRID_SPAN/2,		GRID_SPAN*j + GRID_SPAN/2,		p_grid2[i][j].F_p / 50);
 				glVertex3d(GRID_SPAN*(i+1) + GRID_SPAN/2,	GRID_SPAN*j + GRID_SPAN/2,		p_grid2[i+1][j].F_p / 50);
@@ -38,7 +38,7 @@ void draw_pheromone(void)
 		glEnd();
 
 		glBegin(GL_LINES);
-		for (j = 0; j < HEIGHT / GRID_SPAN - 1; ++j){//y軸方向の線
+		for (j = 0; j < HEIGHT / GRID_SPAN - 1; ++j){//Line of y-axis
 			for (i = 0; i < WIDTH / GRID_SPAN; ++i){
 				glVertex3d(GRID_SPAN*i + GRID_SPAN/2,		GRID_SPAN*j + GRID_SPAN/2,		p_grid2[i][j].F_p / 50);
 				glVertex3d(GRID_SPAN*i + GRID_SPAN/2,		GRID_SPAN*(j+1) + GRID_SPAN/2,	p_grid2[i][j+1].F_p / 50);
@@ -47,12 +47,12 @@ void draw_pheromone(void)
 		glEnd();
 	}
 	
-	////大気中のPheromone
+	////Pheromone in the air
 	//if(dA_p == TRUE){
-	//	glColor3d(1.0, 0.0, 0.0);//フェロモンの色の設定
-	//	//A_pの描画
+	//	glColor3d(1.0, 0.0, 0.0);//Setting pheromone color
+	//	//Drawing A_p
 	//	glBegin(GL_LINES);
-	//	for(i = 0; i < WIDTH / GRID_SPAN - 1; ++i){//x軸方向の線
+	//	for(i = 0; i < WIDTH / GRID_SPAN - 1; ++i){//Line of x-axis
 	//		for(j = 0; j < HEIGHT / GRID_SPAN; ++j){
 	//			glVertex3d(GRID_SPAN*i + GRID_SPAN/2,		GRID_SPAN*j + GRID_SPAN/2,		p_grid2[i][j].A_p / 2);
 	//			glVertex3d(GRID_SPAN*(i+1) + GRID_SPAN/2,	GRID_SPAN*j + GRID_SPAN/2,		p_grid2[i+1][j].A_p / 2);
@@ -61,7 +61,7 @@ void draw_pheromone(void)
 	//	glEnd();
 
 	//	glBegin(GL_LINES);
-	//	for(j = 0; j < HEIGHT / GRID_SPAN - 1; ++j){//y軸方向の線
+	//	for(j = 0; j < HEIGHT / GRID_SPAN - 1; ++j){//Line of y-axis
 	//		for(i = 0; i < WIDTH / GRID_SPAN; ++i){
 	//			glVertex3d(GRID_SPAN*i + GRID_SPAN/2,		GRID_SPAN*j + GRID_SPAN/2,		p_grid2[i][j].A_p / 2);
 	//			glVertex3d(GRID_SPAN*i + GRID_SPAN/2,		GRID_SPAN*(j+1) + GRID_SPAN/2,	p_grid2[i][j+1].A_p / 2);
