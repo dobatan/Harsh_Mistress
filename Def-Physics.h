@@ -1,96 +1,96 @@
-//•¨—’è”
-#ifndef dt			//’PˆÊŠÔ
+//Physical constants
+#ifndef dt			//Unit time
 #define dt			0.1
 #endif
-#ifndef G			//d—Í‰Á‘¬“x
+#ifndef G			//Gravitational acceleration
 #define G			9.8
 #endif
-#ifndef M_PI		//‰~ü—¦
+#ifndef M_PI		//Pi
 #define M_PI		3.14159265358979323846
 #endif
-#ifndef GRID_SPAN	//ƒOƒŠƒbƒhŠÔŠu
+#ifndef GRID_SPAN	//Grid span
 #define GRID_SPAN	2
 #endif
-#ifndef T			//Œ»İ‚ÌƒXƒeƒbƒv
+#ifndef T			//Current time step
 #define T			0
 #endif
-#ifndef T_1			//t-1ƒXƒeƒbƒv
+#ifndef T_1			//t-1 step
 #define T_1			1
 #endif
-#ifndef COE_EVA		//ö”­ŒW”
+#ifndef COE_EVA		//Evaporation coefficient
 #define COE_EVA		0.999
 #endif
-#ifndef COE_DIF		//ŠgUŒW”
+#ifndef COE_DIF		//Diffusion coefficient
 #define COE_DIF		0.001
 #endif
-#ifndef Fri_o_f		//Food‚ÆFieldŠÔ‚Ì–€CŒW”
+#ifndef Fri_o_f		//Friction coefficient between Food and Field
 #define Fri_o_f		0.5
 #endif
-#ifndef TimeLimit	//Šˆ“®ŒÀŠEŠÔ
+#ifndef TimeLimit	//Foraging duration
 #define TimeLimit	12000
 #endif
 
 
-//Robot‚Ì’è”
+//Robotã®å®šæ•°
 #ifndef AGENT_mass	
-#define AGENT_mass	1.5			//Robot‚Ì¿—Ê[kg]
+#define AGENT_mass	1.5			//Robot mass [kg]
 #endif
 #ifndef ADD_P
-#define ADD_P		100			//“Y‰ÁƒtƒFƒƒ‚ƒ“—Ê
+#define ADD_P		100			//Pheromone added
 #endif
 #ifndef TMR_PULL
-#define TMR_PULL	5			//Pull‘Ò‚¿ŠÔ[sec]
+#define TMR_PULL	5			//Pullå¾…ã¡æ™‚é–“[sec]
 #endif
 #ifndef TMR_SA
-#define TMR_SA		100			//SA‘Ò‚¿ŠÔ[sec]
+#define TMR_SA		100			//SAå¾…ã¡æ™‚é–“[sec]
 #endif
 #ifndef TMR_AT
-#define TMR_AT		100			//—UˆøŠÔ[sec]
+#define TMR_AT		100			//èª˜å¼•æ™‚é–“ [sec]
 #endif
 #ifndef AGENT_F
-#define AGENT_F		0.75		//Robot‚Ì’PˆÊo—Í[N]
+#define AGENT_F		0.75		//Robotã®å˜ä½å‡ºåŠ›[N]
 #endif
 #ifndef AGENT_V
-#define AGENT_V		10			//Robot‚Ì’PˆÊ‘¬“x(AGENT_V)[cm/sec]
+#define AGENT_V		10			//Robotã®å˜ä½é€Ÿåº¦(AGENT_V)[cm/sec]
 #endif
 //#ifndef P_Det
-//#define P_Det		2.274776	//ƒtƒFƒƒ‚ƒ“‚ÌÅ’áŒŸo—Ê
+//#define P_Det		2.274776	//ãƒ•ã‚§ãƒ­ãƒ¢ãƒ³ã®æœ€ä½æ¤œå‡ºé‡
 //#endif
 #ifndef P_Det
-#define P_Det		68.678207	//ƒtƒFƒƒ‚ƒ“‚ÌÅ’áŒŸo—Ê
+#define P_Det		68.678207	//ãƒ•ã‚§ãƒ­ãƒ¢ãƒ³ã®æœ€ä½æ¤œå‡ºé‡
 #endif
 
 
-//Environment‚Ì’è”
+//Environmentã®å®šæ•°
 #ifndef WIDTH
-#define WIDTH		900//Field‚Ì•[cm]
+#define WIDTH		900//Fieldã®å¹…[cm]
 #endif
 #ifndef HEIGHT
-#define HEIGHT		90//Field‚Ì‚‚³(‰œs‚«)[cm]
+#define HEIGHT		90//Fieldã®é«˜ã•(å¥¥è¡Œã)[cm]
 #endif
 
 
 #ifndef G1_div
-#define G1_div		20//Nest‚Ì•ªŠ„”
+#define G1_div		20//Nestã®åˆ†å‰²æ•°
 #endif
-#ifndef G1_scale	//Nest‚ÌƒTƒCƒY
-#define G1_scale	60//”¼Œa[cm]
+#ifndef G1_scale	//Nestã®ã‚µã‚¤ã‚º
+#define G1_scale	60//åŠå¾„[cm]
 #endif
-#ifndef G2_div		//Food‚Ì–Ú“I’n‚Ì•ªŠ„”
+#ifndef G2_div		//Foodã®ç›®çš„åœ°ã®åˆ†å‰²æ•°
 #define G2_div		20
 #endif
-#ifndef G2_scale	//Food‚Ì–Ú“I’n‚ÌƒTƒCƒY
-#define G2_scale	100//”¼Œa[cm]
+#ifndef G2_scale	//Foodã®ç›®çš„åœ°ã®ã‚µã‚¤ã‚º
+#define G2_scale	100//åŠå¾„[cm]
 #endif
 
 
 //Foods
-#ifndef Food_scale	//FoodƒXƒP[ƒ‹
-#define Food_scale	26//”¼Œa[cm]
+#ifndef Food_scale	//Foodã‚¹ã‚±ãƒ¼ãƒ«
+#define Food_scale	26//åŠå¾„[cm]
 #endif
-//#ifndef Food_scale	//FoodƒXƒP[ƒ‹
-//#define Food_scale	16//”¼Œa[cm]
+//#ifndef Food_scale	//Foodã‚¹ã‚±ãƒ¼ãƒ«
+//#define Food_scale	16//åŠå¾„[cm]
 //#endif
-#ifndef Food_div	//‰~‚Ì•ªŠ„”
+#ifndef Food_div	//å††ã®åˆ†å‰²æ•°
 #define Food_div	20
 #endif
