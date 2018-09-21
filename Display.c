@@ -25,7 +25,7 @@ void display(void){
 	
 	gluLookAt(WIDTH, -WIDTH, WIDTH + view_z, WIDTH/2, HEIGHT/2, 0.0, 0.0, 0.0, 1.0);
 	
-	//Draw関数の呼び出し
+	//Call Draw functions
 	draw_field();			//Draw Field
 	draw_pheromone();		//Draw Pheromone
 	draw_robot();			//Draw Robot
