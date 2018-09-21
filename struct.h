@@ -1,11 +1,11 @@
 //////////////////////////////////////////
-//Robotの変数の設定
+// Setting Robot variables
 //////////////////////////////////////////
 typedef struct{
 	//Internal State of Robot
 	int state;
 
-	//Robotの座標・速度・力
+	//Coordinates, speed, power of Robot
 	int	grid_x, grid_y;		//Position of Robot on the Grid
 	double x, y;			//Position of Robot
 	double dx, dy;			//Velocity of Robot
@@ -13,94 +13,94 @@ typedef struct{
 	double Fn, Fnx, Fny;
 	double Ft;
 	
-	//Robotの角度
+	//Robot angle
 	double ang_d;			//Direction of Robot(Degree)
 	double ang_r;			//Direction of Robot(radian)
 	double ang_dr;
 	double ang_go;
 
-	//Robotと他の角度
-	double ang_NL;			//Foodと接触したときの法線方向
-	double ang_OA;			//ang_NLの逆、円柱の重心から見たRobotの角度
-	double ang_nest;		//Nestの方向
-	double ang_ij;			//接触した個体の方向
-	double ang_OS;			//衝突した客体の方向（Robotの進行方向に対して）
+	//Robot and other angles
+	double ang_NL;			//Direction of normal line when touching with food
+	double ang_OA;			//Inverse of ang_NL, angle of robot from the viewpoint of COG of cylinder
+	double ang_nest;		//Direction of Nest
+	double ang_ij;			//Direction of collision counterpart (absolute)
+	double ang_OS;			//Direction of collision counterpart (relative; against moving direction of self)
 	double ang_col;
 
-	//知覚標識
-	int p_touch_food;		//Food接触知覚標識
-	int p_arrival_nest;		//Nest到着知覚標識
-	int p_phero_L;			//フェロモン知覚標識
-	int p_phero_R;			//フェロモン知覚標識
-	int p_sc_timer;			//内部タイマー
-	int p_lay_miss;			//敷設失敗の知覚標識
+	//Marking perception events
+	int p_touch_food;		//Marking Food perception
+	int p_arrival_nest;		//Marking Nest arrival
+	int p_phero_L;			//Marking pheromone detection
+	int p_phero_R;			//Marking pheromone detection
+	int p_sc_timer;			//Internal timer
+	int p_lay_miss;			//Marking of failed pheromone-laying
 
-	//その他
-	int aSA_ID;				//SAしている相手のID
-	int Food_ID;			//把持しているFoodのID
-	int SA_root;			//Root robotのID
-	int grip;				//Food∨Robotを掴んでいる
-	int grip_Robot;			//Robotを掴んでいる
-	int grip_Food;			//Foodを掴んでいる
-	double dis_pot;			//他個体との距離
+	//Others
+	int aSA_ID;			//ID of SA counterpart
+	int Food_ID;			//ID of holding food
+	int SA_root;			//ID of root robot
+	int grip;			//Grabbing Food v Robot
+	int grip_Robot;			//Grabbing Robot
+	int grip_Food;			//Grabbing Food
+	double dis_pot;			//Distance to other robot
 	
 	//Counter
-	int random;								//乱数生成（0－99）
-	int count_RW;							//RWカウンタ
-	int count_p_trace;						//フェロモン追従カウンタ
-	int count_collision;					//衝突処理カウンタ
-	int count_lay_failure;					//敷設停止カウンタ
-	int count_move;							//運搬カウンタ
+	int random;			//Generating random numbers (0-99)
+	int count_RW;			//RW counter
+	int count_p_trace;		//Pheromone-following counter
+	int count_collision;		//Collision-processing counter
+	int count_lay_failure;		//Counter on stopping laying down
+	int count_move;			//Counter for transport
 
 	//Flag
-	int flag_RW;							//RWのフラグ
-	int flag_phe_l, flag_phe_r, flag_phe_b;	//行動開始・停止フラグ
+	int flag_RW;			//Flagging RW
+	int flag_phe_l, flag_phe_r, flag_phe_b;	//Flagging initiation/termination of behaviors
 
-	//衝突判定
+	//Determining collision
 	int colli_robot;
 	int colli_wall;
 	int colli_food;
 
-	//フェロモンセンサー
-	double L_sensor, R_sensor;		//フェロモンセンサー
+	//Pheromone sensors
+	double L_sensor, R_sensor;		//Pheromone sensors
 
-	//Pheromone強化フラグ
-	int f_laydown_a;				//敷設フラグ(S1→S2)
-	int f_reinforce_a;				//強化フラグ1(S1→S3)
-	int f_laydown_b;				//敷設フラグ(S1→S2)
-	int f_reinforce_b;				//強化フラグ1(S1→S3)
+	//Flagging Pheromone reinforcement
+	int f_laydown_a;				//Flagging laying down (S1→S2)
+	int f_reinforce_a;				//Flagging reinforcing 1 (S1→S3)
+	int f_laydown_b;				//Flagging laying down (S1→S2)
+	int f_reinforce_b;				//Flagging reinforcing 1 (S1→S3)
 
 	FILE *Log;
 } Robot;
 
 
 //////////////////////////////////////////
-//Robot_memの構造体
+// Struct of Robot_mem
 //////////////////////////////////////////
 typedef struct {
-	double dx_mem1, dy_mem1;		//1ステップで動く距離（速度）
-	double dx_mem2, dy_mem2;		//1ステップで動く距離（速度）
-	double ang_r_mem1, ang_r_mem2;	//角度（degree）
+	double dx_mem1, dy_mem1;		//Distance per step (=speed)
+	double dx_mem2, dy_mem2;		//Distance per step (=speed)
+	double ang_r_mem1, ang_r_mem2;		//Degree
 
 	FILE *Log;
 } Robot_mem;
 
 
 //////////////////////////////////////////
-//Foodの構造体
+// Struct of Food
 //////////////////////////////////////////
 typedef struct {
-	double x, y;			//座標
-	double dx, dy;			//1ステップで動く距離（速度）
-	double ang_d;			//角度（radian）
-	double ang_r;			//角度（degree）
+	double x, y;			//Coordinates
+	double dx, dy;			//Distance per step (=speed)
+	double ang_d;			//Angle (radian)
+	double ang_r;			//Angle
 	double dis;
 	int state;
 
-	double Food_Tx;			//X軸方向の力（並進）
-	double Food_Ty;			//Y軸方向の力（並進）
-	double Food_T;			//並進力
-	double Food_ang;		//並進の角度
+	double Food_Tx;			//Force x-direction (translation)
+	double Food_Ty;			//Force y-direction (translation)
+	double Food_T;			//Force of translation
+	double Food_ang;		//Angle
 	double Food_R;			//
 
 	FILE *Log;
@@ -108,7 +108,7 @@ typedef struct {
 
 
 //////////////////////////////////////////
-//Nestの構造体
+// Struct of Nest
 //////////////////////////////////////////
 typedef struct {
 	int nest_x;
@@ -119,7 +119,7 @@ typedef struct {
 
 
 //////////////////////////////////////////
-//SA計算の構造体
+// Struct of Self-Assembly(SA) calc.
 //////////////////////////////////////////
 typedef struct
 {
@@ -132,7 +132,7 @@ typedef struct
 
 
 //////////////////////////////////////////
-//Log
+// Log
 //////////////////////////////////////////
 //typedef struct{
 //	int step;
@@ -152,16 +152,16 @@ typedef struct{
 } Food_Log;
 
 
-typedef struct{//実際のFieldのGridの変数の設定
-	double F_p;		//地上のフェロモン
-	double A_p;		//大気中のフェロモン
-	double P_dif;	//周囲から拡散してくるフェロモン
+typedef struct{//Setting grid variables of actual field
+	double F_p;		//Pheromone on the floor
+	double A_p;		//Pheromone in the air
+	double P_dif;		//Pheromone coming from surroundings
 } P_grid1;
 
 
 
-typedef struct{//Display用のFieldのGridの変数の設定
-	double F_p;		//地上のフェロモン
-	double A_p;		//大気中のフェロモン
+typedef struct{//Setting grid variables of field for display
+	double F_p;		//Pheromone on the floor
+	double A_p;		//Pheromone in the air
 } P_grid2;
 
