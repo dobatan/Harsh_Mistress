@@ -1,50 +1,50 @@
 #include "stdafx.h"
 #pragma warning(disable:4996)
 
-void draw_robot(void){//Robotの描画
-	//宣言
+void draw_robot(void){//Drawing Robots
+	//Declaration
 	int i;
 	
 	for(i = 0; i < robots; ++i){
-		//色の設定
+		//Setting colors
 		if(robot[i].state == 1){
-			glColor3d(1.0, 0.0, 0.0);//レッド
+			glColor3d(1.0, 0.0, 0.0);//Red
 			if(robot[i].colli_robot == TRUE || robot[i].colli_wall == TRUE || robot[i].colli_food == TRUE)
-				glColor3d(1.0, 1.0, 0.0);//イエロー
+				glColor3d(1.0, 1.0, 0.0);//Yellow
 		}
 		if(robot[i].state == 2){
-			glColor3d(0.0, 1.0, 0.0);//グリーン
+			glColor3d(0.0, 1.0, 0.0);//Green
 			if(robot[i].colli_robot == TRUE || robot[i].colli_wall == TRUE || robot[i].colli_food == TRUE)
-				glColor3d(1.0, 1.0, 0.0);//イエロー
+				glColor3d(1.0, 1.0, 0.0);//Yellow
 		}
 		if(robot[i].state == 3){
-			glColor3d(0.0, 0.0, 1.0);//ブルー
+			glColor3d(0.0, 0.0, 1.0);//Blue
 			if(robot[i].colli_robot == TRUE || robot[i].colli_wall == TRUE || robot[i].colli_food == TRUE)
-				glColor3d(1.0, 1.0, 0.0);//イエロー
+				glColor3d(1.0, 1.0, 0.0);//Yellow
 		}
 
 		glPushMatrix();
-			glTranslated(robot[i].x, robot[i].y, 4.0);	//並進
-			glRotated(robot[i].ang_d, 0.0, 0.0, 1.0);	//回転
-			glRotated(90.0, 1.0, 0.0, 0.0);				//Z軸を上に
-			glutSolidTeapot(scale_argos);				//Teapotを描く
+			glTranslated(robot[i].x, robot[i].y, 4.0);	//Translation
+			glRotated(robot[i].ang_d, 0.0, 0.0, 1.0);	//Rotation
+			glRotated(90.0, 1.0, 0.0, 0.0);				//Z-axis up
+			glutSolidTeapot(scale_argos);				//Drawing teapot
 		glPopMatrix();
 	}
 }
 
 void draw_robotvector(void){
-	//宣言
+	//Declaration
 	int i;
 
-	//設定
+	//Setting
 	glDisable(GL_LIGHTING);
 
-	//Fieldの描画
-	glColor4d(0.0, 0.0, 0.0, 1.0);//これから描画するものの色を指定
+	//Drawing field
+	glColor4d(0.0, 0.0, 0.0, 1.0);//Setting colors
 
 	for (i = 0; i < robots; i++){
 		glBegin(GL_LINES);
-			glVertex3d(robot[i].x, robot[i].y, scale_argos * 2);	//x軸下辺
+			glVertex3d(robot[i].x, robot[i].y, scale_argos * 2);	//x-axis lower side
 			glVertex3d(robot[i].x + 5 * 4*robot[i].dx, robot[i].y + 5 * 4*robot[i].dy, scale_argos * 2);
 		glEnd();
 	}
