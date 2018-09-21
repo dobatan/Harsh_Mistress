@@ -2,7 +2,7 @@
 
 void position(void)
 {
-	//éŒ¾
+	//
 	int i;
 
 	#pragma omp parallel for
