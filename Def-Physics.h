@@ -31,66 +31,66 @@
 #endif
 
 
-//Robotの定数
-#ifndef AGENT_mass	
-#define AGENT_mass	1.5			//Robot mass [kg]
+//Robot attributes
+#ifndef AGENT_mass	//Robot mass [kg]
+#define AGENT_mass	1.5		
 #endif
-#ifndef ADD_P
-#define ADD_P		100			//Pheromone added
+#ifndef ADD_P		//Pheromone added
+#define ADD_P		100	
 #endif
-#ifndef TMR_PULL
-#define TMR_PULL	5			//Pull待ち時間[sec]
+#ifndef TMR_PULL	//[Obsolete] Waiting time for Pull [sec]
+#define TMR_PULL	5
 #endif
-#ifndef TMR_SA
-#define TMR_SA		100			//SA待ち時間[sec]
+#ifndef TMR_SA		//[Obsolete] Waiting time for Self-Assembly [sec]
+#define TMR_SA		100
 #endif
-#ifndef TMR_AT
-#define TMR_AT		100			//誘引時間 [sec]
+#ifndef TMR_AT		//Time to attract [sec]
+#define TMR_AT		100
 #endif
-#ifndef AGENT_F
-#define AGENT_F		0.75		//Robotの単位出力[N]
+#ifndef AGENT_F		//Unit power of a robot [N]
+#define AGENT_F		0.75
 #endif
-#ifndef AGENT_V
-#define AGENT_V		10			//Robotの単位速度(AGENT_V)[cm/sec]
+#ifndef AGENT_V		//Unit speed of a robot [cm/sec]
+#define AGENT_V		10
 #endif
-//#ifndef P_Det
-//#define P_Det		2.274776	//フェロモンの最低検出量
+//#ifndef P_Det 	//Lower threshold of pheromone detection
+//#define P_Det		2.274776
 //#endif
-#ifndef P_Det
-#define P_Det		68.678207	//フェロモンの最低検出量
+#ifndef P_Det	  //Lower threshold of pheromone detection (remain 5 min)
+#define P_Det		68.678207
 #endif
 
 
-//Environmentの定数
-#ifndef WIDTH
-#define WIDTH		900//Fieldの幅[cm]
+//Environment attributes
+#ifndef WIDTH   //Field width [cm]
+#define WIDTH		900
 #endif
-#ifndef HEIGHT
-#define HEIGHT		90//Fieldの高さ(奥行き)[cm]
+#ifndef HEIGHT    //Field Length [cm]
+#define HEIGHT		90
 #endif
 
 
-#ifndef G1_div
-#define G1_div		20//Nestの分割数
+#ifndef G1_div    //n-sided polygon of nest shape
+#define G1_div		20
 #endif
-#ifndef G1_scale	//Nestのサイズ
-#define G1_scale	60//半径[cm]
+#ifndef G1_scale	//Nest size [cm in radius]
+#define G1_scale	60
 #endif
-#ifndef G2_div		//Foodの目的地の分割数
+#ifndef G2_div		//[Obsolete] n-sided polygon of food shape
 #define G2_div		20
 #endif
-#ifndef G2_scale	//Foodの目的地のサイズ
-#define G2_scale	100//半径[cm]
+#ifndef G2_scale	//[Obsolete] Food size [cm in radius]
+#define G2_scale	100
 #endif
 
 
-//Foods
-#ifndef Food_scale	//Foodスケール
-#define Food_scale	26//半径[cm]
+//Food attributes
+#ifndef Food_scale	//Food size [cm in radius]
+#define Food_scale	26
 #endif
-//#ifndef Food_scale	//Foodスケール
-//#define Food_scale	16//半径[cm]
+//#ifndef Food_scale	//Food size [cm in radius]
+//#define Food_scale	16
 //#endif
-#ifndef Food_div	//円の分割数
+#ifndef Food_div	//n-sided polygon of food shape
 #define Food_div	20
 #endif
