@@ -10,7 +10,7 @@ void make_file(void){
 
 	sprintf_s(str, 100, "result_%d.csv", gen);
 	if (error = fopen_s(&result, str, "a+") != 0) {
-		printf("%sƒtƒ@ƒCƒ‹‚ªŠJ‚¯‚Ü‚¹‚ñ\n", str);
+		printf("%sãƒ•ã‚¡ã‚¤ãƒ«ãŒé–‹ã‘ã¾ã›ã‚“\n", str);
 		return -1;
 	}
 
@@ -22,20 +22,20 @@ void make_file(void){
 
 	//Initial_log
 	Initial_Log = fopen("Initial_log.csv", "w");
-	fprintf(Initial_Log, "Robot”,robots,%d\n", robots);					//robots
-	fprintf(Initial_Log, "Robot‚Ì¿—Ê,AGENT_mass,%d\n", AGENT_mass);		//AGENT_mass
-	fprintf(Initial_Log, "Robot‚ÌƒXƒP[ƒ‹,scale_argos,%d\n", scale_argos);	//scale_argos
-	fprintf(Initial_Log, "“Y‰ÁƒAƒ‹ƒR[ƒ‹—Ê,ADD_P,%d\n", ADD_P);				//“Y‰ÁƒtƒFƒƒ‚ƒ“—Ê
-	fprintf(Initial_Log, "Pull Timer,TMR_PULL,%d\n", TMR_PULL);				//TMR_PULL
-	fprintf(Initial_Log, "SA Timer,TMR_SA,%d\n", TMR_SA);					//TMR_SA
-	fprintf(Initial_Log, "Robot‚Ìo—Í,AGENT_F,%d\n", AGENT_F);				//Robot‚Ìo—Í
-	fprintf(Initial_Log, "Robot‚Ì‘¬“x,AGENT_V,%d\n", AGENT_V);				//Robot‚Ì‘¬“x
+	fprintf(Initial_Log, "Robotæ•°,robots,%d\n", robots);			//robots
+	fprintf(Initial_Log, "Robotã®è³ªé‡,AGENT_mass,%d\n", AGENT_mass);		//AGENT_mass
+	fprintf(Initial_Log, "Robotã®ã‚¹ã‚±ãƒ¼ãƒ«,scale_argos,%d\n", scale_argos);	//scale_argos
+	fprintf(Initial_Log, "æ·»åŠ ã‚¢ãƒ«ã‚³ãƒ¼ãƒ«é‡,ADD_P,%d\n", ADD_P);			//Amount of pheromone added
+	fprintf(Initial_Log, "Pull Timer,TMR_PULL,%d\n", TMR_PULL);			//TMR_PULL
+	fprintf(Initial_Log, "SA Timer,TMR_SA,%d\n", TMR_SA);				//TMR_SA
+	fprintf(Initial_Log, "Robotã®å‡ºåŠ›,AGENT_F,%d\n", AGENT_F);				//Robot output
+	fprintf(Initial_Log, "Robotã®é€Ÿåº¦,AGENT_V,%d\n", AGENT_V);				//Robot speed
 	fprintf(Initial_Log,"\n");
-	fprintf(Initial_Log, "Food‚Ì¿—Ê,food_mass,%d\n", food_mass);			//food_mass
-	fprintf(Initial_Log, "Food‚ÌƒXƒP[ƒ‹,Food_scale,%d\n", Food_scale);		//Food_scale
+	fprintf(Initial_Log, "Foodã®è³ªé‡,food_mass,%d\n", food_mass);			//food_mass
+	fprintf(Initial_Log, "Foodã®ã‚¹ã‚±ãƒ¼ãƒ«,Food_scale,%d\n", Food_scale);		//Food_scale
 	fprintf(Initial_Log,"\n");
-	fprintf(Initial_Log,"Field‚Ì‰¡•,WIDTH,%d\n", WIDTH);					//FieldWidth
-	fprintf(Initial_Log,"Field‚Ìc•,HEIGHT,%d\n", HEIGHT);					//FieldHeight
+	fprintf(Initial_Log,"Fieldã®æ¨ªå¹…,WIDTH,%d\n", WIDTH);					//FieldWidth
+	fprintf(Initial_Log,"Fieldã®ç¸¦å¹…,HEIGHT,%d\n", HEIGHT);					//FieldHeight
 }
 
 
