@@ -3,23 +3,23 @@
 
 
 void draw_food(void){
-	//ê›íË
+	//Settings
 	int i;
 	int p;
 
 	#pragma omp parallel for
 	for (p = 0; p < foods; p++){
-		//ï`âÊ
+		//Draw
 		glPushMatrix();
-			glTranslated(food[p].x, food[p].y, Food_scale + 1);		//ï¿êi
-			glRotated(food[p].ang_d, 0.0, 0.0, 1.0);				//âÒì]
-			glRotated(90.0, 1.0, 0.0, 0.0);							//Zé≤Çè„Ç…
-			glScaled(Food_scale, Food_scale, Food_scale);			//scaleÇÃê›íË
+			glTranslated(food[p].x, food[p].y, Food_scale + 1);		//Translation
+			glRotated(food[p].ang_d, 0.0, 0.0, 1.0);			//Rotation
+			glRotated(90.0, 1.0, 0.0, 0.0);					//Z-axis up
+			glScaled(Food_scale, Food_scale, Food_scale);			//Setting scale
 
 			glEnable(GL_NORMALIZE);
 
-			//â~íåè„ñ 
-			glColor4d(0.0, 0.0, 0.0, 0.5);//ObjectÇÃêFÇÃê›íË
+			//Upper side of cylinder
+			glColor4d(0.0, 0.0, 0.0, 0.5);//Setting object colors
 			glBegin(GL_POLYGON);
 				glNormal3f(0.0, 1.0, 0.0);
 				glVertex3f(0,1,0);
@@ -36,7 +36,7 @@ void draw_food(void){
 					glVertex3f((double)cos((double)i * 2.0 * M_PI / Food_div), 1.0, (double)sin((double)i * 2.0 * M_PI / Food_div));
 			glEnd();
 
-			glColor4d(0.7, 0.7, 0.0, 0.5);//ObjectÇÃêFÇÃê›íË
+			glColor4d(0.7, 0.7, 0.0, 0.5);//Setting object colors
 				glBegin(GL_POLYGON);
 				glNormal3f(0.0, 1.0, 0.0);
 				glVertex3f(0,1,0);
@@ -53,8 +53,8 @@ void draw_food(void){
 					glVertex3f((double)cos((double)i * 2.0 * M_PI / Food_div), 1.0, (double)sin((double)i * 2.0 * M_PI / Food_div));
 			glEnd();
 
-			//â~íåíÍñ 
-			glColor4d(0.0, 0.0, 0.0, 0.5);//ObjectÇÃêFÇÃê›íË
+			//Lower side of cylinder
+			glColor4d(0.0, 0.0, 0.0, 0.5);//Setting object colors
 				glBegin(GL_POLYGON);
 				glNormal3f(0.0, 1.0, 0.0);
 				glVertex3f(0,-1,0);
@@ -71,7 +71,7 @@ void draw_food(void){
 					glVertex3f((double)cos((double)i * 2.0 * M_PI / Food_div), -1.0, (double)sin((double)i * 2.0 * M_PI / Food_div));
 			glEnd();
 
-			glColor4d(0.7, 0.7, 0.0, 0.5);//ObjectÇÃêFÇÃê›íË
+			glColor4d(0.7, 0.7, 0.0, 0.5);//Setting object colors
 				glBegin(GL_POLYGON);
 				glNormal3f(0.0, 1.0, 0.0);
 				glVertex3f(0,-1,0);
@@ -88,8 +88,8 @@ void draw_food(void){
 					glVertex3f((double)cos((double)i * 2.0 * M_PI / Food_div), -1.0, (double)sin((double)i * 2.0 * M_PI / Food_div));
 			glEnd();
 		  
-			//â~íåë§ñ 
-			glColor4d(0.7, 0.7, 0.0, 0.5);//ObjectÇÃêFÇÃê›íË
+			//Side of cylinder
+			glColor4d(0.7, 0.7, 0.0, 0.5);//Setting object colors
 			glBegin(GL_QUAD_STRIP);
 			#pragma omp parallel for
 			for (i = 0; i <= Food_div; i++){
