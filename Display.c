@@ -20,20 +20,20 @@ void draw_text(void){
 
 
 void display(void){
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);//Window‚ğ“h‚è‚Â‚Ô‚·
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 	
-	gluLookAt(WIDTH, -WIDTH, WIDTH + view_z, WIDTH/2, HEIGHT/2, 0.0, 0.0, 0.0, 1.0);//‹“_‚Ìİ’è
+	gluLookAt(WIDTH, -WIDTH, WIDTH + view_z, WIDTH/2, HEIGHT/2, 0.0, 0.0, 0.0, 1.0);
 	
-	//DrawŠÖ”‚ÌŒÄ‚Ño‚µ
-	draw_field();			//Field‚ğ•`‰æ(Œõ‚ğ“–‚Ä‚È‚¢)
-	draw_pheromone();		//Pheromone‚ğ•`‰æ(Œõ‚ğ“–‚Ä‚È‚¢)
-	draw_robot();			//Robot‚ğ•`‰æ
-	draw_robotvector();		//Robot‚Ìis•ûŒü‚Ì•\¦
+	//Drawé–¢æ•°ã®å‘¼ã³å‡ºã—
+	draw_field();			//Draw Field
+	draw_pheromone();		//Draw Pheromone
+	draw_robot();			//Draw Robot
+	draw_robotvector();		//Draw Direction of Robot
 	draw_robot_number();
-	draw_food();			//Food‚Ì•`‰æ
-	draw_text();			//Step”‚Ì•\¦
-	draw_nest1();			//Nest
+	draw_food();			//Draw Food
+	draw_text();			//Draw Number of Steps
+	draw_nest1();			//Draw Nest
 
-	glutSwapBuffers();		//ƒ_ƒuƒ‹ƒoƒbƒtƒ@
+	glutSwapBuffers();
 }
