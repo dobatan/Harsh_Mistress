@@ -2,9 +2,9 @@
 
 
 void evaporation(void){
-	//宣言
+	//Declaration
 	int i, j;
-	//double eva;		//蒸発フェロモン量
+	//double eva;		//Amount of evaporating pheromone
 	//double P_dif;
 
 	#pragma omp parallel for
@@ -14,11 +14,11 @@ void evaporation(void){
 			//c = 1;
 			//P_dif = 0;
 
-			//蒸発
+			//Evaporation
 			p_grid1[i][j][t].F_p = c_eva * p_grid1[i][j][t_1].F_p;
 			//eva = p_grid1[i][j][t_1].F_p - p_grid1[i][j][t].F_p;
 
-			////拡散
+			////Diffusion
 			//if(i > 0){
 			//	P_dif += p_grid1[i-1][j][t_1].A_p;
 			//	c++;
@@ -47,18 +47,18 @@ void evaporation(void){
 
 void pheromone_detector(void){
 	int i;
-	int S_L_x, S_L_y;	//センサー（左）のあるグリッド
-	int S_R_x, S_R_y;	//センサー（右）のあるグリッド
+	int S_L_x, S_L_y;	//Grid with sensor (left)
+	int S_R_x, S_R_y;	//Grid with sensor (right)
 	
 	#pragma omp parallel for
 	for (i = 0; i < robots; ++i){
-		//センサーの位置決め
+		//Locating sensors
 		S_L_x = (int)(robot[i].x + (scale_argos / 2) * cos(robot[i].ang_r + M_PI / 6));
 		S_L_y = (int)(robot[i].y + (scale_argos / 2) * sin(robot[i].ang_r + M_PI / 6));
 		S_R_x = (int)(robot[i].x + (scale_argos / 2) * cos(robot[i].ang_r - M_PI / 6));
 		S_R_y = (int)(robot[i].y + (scale_argos / 2) * sin(robot[i].ang_r - M_PI / 6));
 
-		//各センサーの入力
+		//Input of each sensor
 		//robot[i].L_sensor = p_grid1[S_L_x][S_L_y][t].A_p;
 		//robot[i].R_sensor = p_grid1[S_R_x][S_R_y][t].A_p;
 		robot[i].L_sensor = p_grid1[S_L_x][S_L_y][t].F_p;
@@ -67,7 +67,7 @@ void pheromone_detector(void){
 }
 
 
-void envi_pheromone(void){//フェロモンの計算
+void envi_pheromone(void){//Calculating pheromone
 	evaporation();
 	pheromone_detector();
 }
