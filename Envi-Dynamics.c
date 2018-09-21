@@ -1,16 +1,16 @@
 #include "stdafx.h"
 
 
-void Envi_Dynamics(void){//Objectのダイナミクス
+void Envi_Dynamics(void){//Dynamics of Objects
 	int i, p;
-	double T_x		= 0;									//Foodに働く並進の力
+	double T_x		= 0;						//Translation force to Food
 	double T_y		= 0;
-	double R		= 0;									//Foodに働く回転の力
+	double R		= 0;						//Rotation force to Food
 	double ang_T	= 0;
 	double I		= food_mass * pow(Food_scale, 2) / 2;
-	double fri_pf	= Fri_o_f * food_mass * G;				//FoodとFieldの摩擦力
+	double fri_pf	= Fri_o_f * food_mass * G;				//Friction between Food and Field
 
-	//Foodの力の初期化
+	//Initialize force of food
 	for(p = 0; p < foods; p++){
 		food[p].Food_T		= 0;
 		food[p].Food_Tx		= 0;
@@ -28,31 +28,31 @@ void Envi_Dynamics(void){//Objectのダイナミクス
 
 			robot[i].ang_nest = atan2(nest_y - robot[i].y, nest_x - robot[i].x);
 			
-			//RobotのSA力学計算
-			//SAしたエージェントの力をRoot-SAに＋
+			//Kinetics calculations: Robot SelfAssembly (SA)
+			//Agent force of SA added to Root-SA
 			sa[robot[i].SA_root].sa_x += AGENT_F * cos(robot[i].ang_nest);
-			//SAしたエージェントの力をRoot-SAに＋
+			//Agent force of SA added to Root-SA
 			sa[robot[i].SA_root].sa_y += AGENT_F * sin(robot[i].ang_nest);
 			sa[robot[i].SA_root].ang_r = atan2(sa[robot[i].SA_root].sa_y, sa[robot[i].SA_root].sa_x);
 
-			//RootSA robotにまとめる
+			//Root SA combine to robot
 			robot[robot[i].SA_root].ang_NL = atan2(robot[robot[i].SA_root].y - food[robot[robot[i].SA_root].Food_ID].y, robot[robot[i].SA_root].x - food[robot[robot[i].SA_root].Food_ID].x);
 			robot[robot[i].SA_root].F = sqrt(pow(sa[robot[i].SA_root].sa_x, 2) + pow(sa[robot[i].SA_root].sa_y, 2));
 			robot[robot[i].SA_root].Ft = robot[robot[i].SA_root].F * sin(sa[robot[i].SA_root].ang_r - robot[robot[i].SA_root].ang_NL);
 
-			//Foodの力学計算（並進）
+			//Kinetics calculations: Food (Translation)
 			food[robot[robot[i].SA_root].Food_ID].Food_Tx	+=	sa[robot[i].SA_root].sa_x;
 			food[robot[robot[i].SA_root].Food_ID].Food_Ty	+=	sa[robot[i].SA_root].sa_y;
 			food[robot[robot[i].SA_root].Food_ID].Food_T	=	sqrt(pow(food[robot[robot[i].SA_root].Food_ID].Food_Tx, 2) + pow(food[robot[robot[i].SA_root].Food_ID].Food_Ty, 2));
 			food[robot[robot[i].SA_root].Food_ID].Food_ang	=	atan2(food[robot[robot[i].SA_root].Food_ID].Food_Ty , food[robot[robot[i].SA_root].Food_ID].Food_Tx);
-			//Foodの力学計算（回転）
+			//Kinetics calculations: Food (Rotation)
 			food[robot[robot[i].SA_root].Food_ID].Food_R	+=	robot[robot[i].SA_root].Ft;
 		}		
 	}
 
 	for (p = 0; p < foods; p++){
 		if(fabs(fri_pf) < fabs(food[p].Food_T)){
-			//Transrarion
+			//Translation
 			T_x	= food[p].Food_Tx - fri_pf * cos(food[p].Food_ang);
 			T_y = food[p].Food_Ty - fri_pf * sin(food[p].Food_ang);
 			
