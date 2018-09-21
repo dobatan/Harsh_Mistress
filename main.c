@@ -9,12 +9,12 @@ int argos;
 int swarm;
 int swarm_MAX;
 int draw;
-int robots;						//number of Robot
-int foods;						//number of Food
+int robots;					//number of Robot
+int foods;					//number of Food
 int food_mass;					//Food mass
 int food_dis;					//Food distance
-double p_density;				//Pheromone濃度
-int opposite;					//Food位置
+double p_density;				//Pheromone density
+int opposite;					//Food location
 int foodlimit;
 int idle_f = TRUE;
 int foodcount;
@@ -198,7 +198,7 @@ void input_file(void)
 	char param_name10[100];
 
 	if (error = fopen_s(&param, p_fname, "r") != 0) {
-		printf("%sファイルが開けません\n", p_fname);
+		printf("%s繝輔ぃ繧､繝ｫ縺碁幕縺代∪縺帙ｓ\n", p_fname);
 		//return -1;
 	}
 	fscanf_s(param, "%[^,],%d", param_name1, _countof(param_name1), &argos);
@@ -221,7 +221,7 @@ void input_file(void)
 	}
 	sprintf_s(str, 100, "SwarmInput_%d.csv", gen);
 	if (error = fopen_s(&swarminput, str, "r") != 0) {
-		printf("%sファイルが開けません\n", str);
+		printf("%s繝輔ぃ繧､繝ｫ縺碁幕縺代∪縺帙ｓ\n", str);
 		return -1;
 	}
 
@@ -238,7 +238,7 @@ void output_file(void){
 
 	sprintf_s(str, 100, "result_%d.csv", gen);
 	if (error = fopen_s(&result, str, "w") != 0) {
-		printf("%sファイルが開けません\n", str);
+		printf("%s繝輔ぃ繧､繝ｫ縺碁幕縺代∪縺帙ｓ\n", str);
 		return -1;
 	}
 }
