@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 
-void state1_behavior(int i){	//‰Šúó‘Ô
+void state1_behavior(int i){	//Initial condition
 	//robot[0].dx = -1;
 	//robot[0].dy = 0;
 	//robot[0].ang_r = atan2(robot[0].dy, robot[0].dx);
@@ -14,7 +14,7 @@ void state1_behavior(int i){	//‰Šúó‘Ô
 }
 
 
-void state2_behavior(int i){	//’P‘Ì‰^”À
+void state2_behavior(int i){	//Carrying single item
 	//robot[0].dx = 0.1;
 	//robot[0].dy = -1;
 	//robot[0].ang_r = atan2(robot[0].dy, robot[0].dx);
@@ -23,7 +23,7 @@ void state2_behavior(int i){	//’P‘Ì‰^”À
 	//robot[1].dy = 0;
 	//robot[1].ang_r = atan2(robot[1].dy, robot[1].dx);
 
-	go2nest(i);			//Nest‚ÖˆÚ“®
+	go2nest(i);			//Move to nest
 
 	//if (robot[i].count_move < 200){
 	//	robot[i].dx = 0;
@@ -32,11 +32,11 @@ void state2_behavior(int i){	//’P‘Ì‰^”À
 	//}
 
 	if(p_density != 0)
-		add_pheromone(i);	//ƒtƒFƒƒ‚ƒ““Y‰Á
+		add_pheromone(i);	//Adding pheromone
 }
 
 
-void state3_behavior(int i){	//—UˆøE‰˜H
+void state3_behavior(int i){	//Attraction: outbound
 	//robot[0].dx = -1;
 	//robot[0].dy = 0;
 	//robot[0].ang_r = atan2(robot[0].dy, robot[0].dx);
