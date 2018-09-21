@@ -1,14 +1,14 @@
 #include "stdafx.h"
 
 
-void state1_change(int i){//初期状態
-	//Foodに接触したとき
+void state1_change(int i){//Initial condition
+	//When touching food
 	if (robot[i].p_touch_food == 1){
 		robot[i].state = 2;
-		robot[i].count_move = 0;		//協調運搬用のカウンタ
+		robot[i].count_move = 0;		//[Obsolete] Counter for coordinate transport
 	}
 
-	//アルコールを検知したとき
+	//When detecting pheromone
 	if (robot[i].p_phero_L == TRUE || robot[i].p_phero_R == TRUE){
 		P_p_rand = (double)rand() / ((double)RAND_MAX + 1);
 		if (P_p_rand < P_p[swarm]) {
@@ -19,13 +19,13 @@ void state1_change(int i){//初期状態
 }
 
 
-void state2_change(int i){//敷設・強化
-	//Nestに到着したとき
+void state2_change(int i){//Laying down/Reinforcing
+	//When arriving to nest
 	if (robot[i].p_arrival_nest == TRUE){
 		robot[i].state = 1;
 		robot[i].p_sc_timer = 0;
 		robot_parallelism_flagdown(i);
-		foodcount += 1;					//Foodを採餌した回数+1
+		foodcount += 1;					//#event of foraging + 1
 	}
 	if(robot[i].p_lay_miss == TRUE){
 		robot[i].state = 1;
@@ -34,12 +34,12 @@ void state2_change(int i){//敷設・強化
 }
 
 
-void state3_change(int i){//誘引
-	if (robot[i].p_touch_food == TRUE){	//Foodに接触したとき
+void state3_change(int i){//Attraction
+	if (robot[i].p_touch_food == TRUE){	//When touching food
 		robot[i].state = 2;
-		robot[i].count_move = 0;		//協調運搬用のカウンタ
+		robot[i].count_move = 0;		//[Obsolete] Counter for coordinate transport
 	}
-	if(robot[i].p_sc_timer > 60)		//フェロモンが見つからないとき
+	if(robot[i].p_sc_timer > 60)		//When unable to find pheromone
 		robot[i].state = 1;
 }
 
