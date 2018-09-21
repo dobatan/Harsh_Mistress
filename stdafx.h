@@ -1,24 +1,24 @@
-// stdafx.h : 標準のシステム インクルード ファイルのインクルード ファイル、または
-// 参照回数が多く、かつあまり変更されない、プロジェクト専用のインクルード ファイル
-// を記述します。
+// stdafx.h : [deleted explanation of stdafx.h]
+// [deleted explanation of stdafx.h]
+// [deleted explanation of stdafx.h]
 //
 
 #pragma once
 
 #include "targetver.h"
 
-#define WIN32_LEAN_AND_MEAN             // Windows ヘッダーから使用されていない部分を除外します。
-// Windows ヘッダー ファイル:
+#define WIN32_LEAN_AND_MEAN             // Omitting parts not used by Windows header
+// Windows header file
 #include <windows.h>
 
-// C ランタイム ヘッダー ファイル
+// C-runtime header file
 #include <stdlib.h>
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
 
 
-// TODO: プログラムに必要な追加ヘッダーをここで参照してください
+// TODO: Additional header file
 #define _USE_MATH_DEFINES // for C
 #include <math.h>
 #include <GL/freeglut.h>
